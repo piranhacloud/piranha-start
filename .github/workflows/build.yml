@@ -3,8 +3,7 @@ on:
   push:
     branches:
       - 'current'
-    tags-ignore:
-      - 'v*'
+  workflow_dispatch:      
 jobs:
   build:
     runs-on: ${{ matrix.os }}
