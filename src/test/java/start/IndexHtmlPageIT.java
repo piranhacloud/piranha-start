@@ -34,6 +34,7 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -43,9 +44,17 @@ import org.junit.jupiter.api.Test;
  */
 public class IndexHtmlPageIT {
 
+    @BeforeAll
+    public static void beforeAll() {
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException ie) {
+        }
+    }
+
     /**
      * Test the 'index.html' page.
-     * 
+     *
      * @throws Exception when an error occurs.
      */
     @Test
