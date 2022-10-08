@@ -47,7 +47,7 @@ public class IndexHtmlPageIT {
     @BeforeAll
     public static void beforeAll() {
         try {
-            Thread.sleep(20000);
+            Thread.sleep(30000);
         } catch (InterruptedException ie) {
         }
     }
