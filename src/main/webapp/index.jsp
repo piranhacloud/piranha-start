@@ -13,8 +13,9 @@
         <a href="start.xhtml">Start using Piranha</a>
         <%
 
-            response.sendRedirect("start.xhtml");
-
+            response.setStatus(302);
+            response.setHeader("Location", "start.xhtml");
+            response.flushBuffer();
          %>
     </body>
 </html>
