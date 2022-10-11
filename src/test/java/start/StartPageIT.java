@@ -29,6 +29,7 @@ package start;
 
 import java.net.URI;
 import java.net.http.HttpClient;
+import static java.net.http.HttpClient.Redirect.ALWAYS;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
@@ -38,11 +39,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * The 'index.html' page integration test.
+ * The start page integration test.
  *
  * @author Manfred Riem (mriem@manorrock.com)
  */
-public class IndexHtmlPageIT {
+public class StartPageIT {
 
     @BeforeAll
     public static void beforeAll() {
@@ -61,11 +62,13 @@ public class IndexHtmlPageIT {
     public void testIndexHtml() throws Exception {
         HttpClient client = HttpClient
                 .newBuilder()
-                .connectTimeout(Duration.ofSeconds(60)).build();
+                .connectTimeout(Duration.ofSeconds(60))
+                .followRedirects(ALWAYS)
+                .build();
         HttpRequest request = HttpRequest
-                .newBuilder(new URI("http://localhost:8080/piranha-start/index.html"))
+                .newBuilder(new URI("http://localhost:8080/piranha-start"))
                 .build();
         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
-        assertTrue(response.body().contains("Piranha Start"));
+        assertTrue(response.body().contains("Piranha Start!"));
     }
 }

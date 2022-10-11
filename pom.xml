@@ -11,7 +11,7 @@
     <packaging>war</packaging>
     <name>Piranha - Start</name>
     <properties>
-        <jakarta.jakartaee-web-api.version>10.0.0</jakarta.jakartaee-web-api.version>
+        <mojarra.version>4.0.0</mojarra.version>
         <java.version>17</java.version>
         <junit.version>5.9.0</junit.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
@@ -19,6 +19,7 @@
         <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
         <piranha.version>22.9.0</piranha.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <weld.version>5.1.0.Final</weld.version>
     </properties>
     <build>
         <finalName>piranha-start</finalName>
@@ -77,22 +78,28 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>cloud.piranha.extension</groupId>
-            <artifactId>piranha-extension-weld-servlet</artifactId>
-            <version>${piranha.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>jakarta.faces</artifactId>
-            <version>4.0.0</version>
+            <version>${mojarra.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.weld.servlet</groupId>
             <artifactId>weld-servlet-shaded</artifactId>
-            <version>5.1.0.Final</version>
+            <version>${weld.version}</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>11.0.0</version>
+            <classifier>jakarta</classifier>
+        </dependency>
+        <dependency>
+            <groupId>cloud.piranha.extension</groupId>
+            <artifactId>piranha-extension-weld-servlet</artifactId>
+            <version>${piranha.version}</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

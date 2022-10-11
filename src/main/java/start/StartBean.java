@@ -27,15 +27,38 @@
  */
 package start;
 
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 
 /**
- * The one and only application bean.
+ * The StartBean.
  * 
  * @author Manfred Riem (mriem@manorrock.com)
  */
-@ApplicationScoped
-@Named("applicationBean")
-public class ApplicationBean {
+@Named(value = "startBean")
+@RequestScoped
+public class StartBean {
+
+    /**
+     * Stores the runtime requested.
+     */
+    private String runtime;
+
+    /**
+     * Get the runtime.
+     * 
+     * @return the runtime.
+     */
+    public String getRuntime() {
+        return runtime;
+    }
+
+    /**
+     * Set the runtime.
+     * 
+     * @param runtime the runtime.
+     */
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
+    }
 }

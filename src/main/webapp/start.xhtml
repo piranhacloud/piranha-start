@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="jakarta.faces.passthrough">
+    <h:head>
+        <title>Piranha Start</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <f:view transient="true"/>
+        <div>Piranha Start!</div>
+        <h:form>
+            <h3>Select your runtime:</h3>
+            <p:selectOneRadio id="runtime" value="#{startBean.runtime}">
+                <f:selectItem itemLabel="Core Profile" itemValue="core-profile"/>
+            </p:selectOneRadio>
+            <br/>
+            <p:commandButton id="submitButton" value="Download project"/>
+        </h:form>
+    </h:body>
+</html>

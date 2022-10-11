@@ -12,11 +12,4 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
-    <mime-mapping>
-        <extension>xhtml</extension>
-        <mime-type>text/html</mime-type>
-    </mime-mapping>
-    <welcome-file-list>
-        <welcome-file>index.xhtml</welcome-file>
-    </welcome-file-list>
 </web-app>
