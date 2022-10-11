@@ -54,19 +54,19 @@ public class StartPageIT {
     }
 
     /**
-     * Test the 'index.html' page.
+     * Test the 'start.xhtml' page.
      *
      * @throws Exception when an error occurs.
      */
     @Test
-    public void testIndexHtml() throws Exception {
+    public void testStartXhtml() throws Exception {
         HttpClient client = HttpClient
                 .newBuilder()
                 .connectTimeout(Duration.ofSeconds(60))
                 .followRedirects(ALWAYS)
                 .build();
         HttpRequest request = HttpRequest
-                .newBuilder(new URI("http://localhost:8080/piranha-start"))
+                .newBuilder(new URI("http://localhost:8080/piranha-start/start.xhtml"))
                 .build();
         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
         assertTrue(response.body().contains("Piranha Start!"));
