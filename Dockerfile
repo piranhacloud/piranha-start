@@ -12,20 +12,20 @@ RUN export PATH=$PATH:/usr/local/apache-maven-$MAVEN_VERSION/bin && \
     mvn --no-transfer-progress clean install
 
 #
-# Download the Piranha Micro distribution
+# Download the Piranha Servlet distribution
 #
 FROM eclipse-temurin:17 AS dist
-ENV PIRANHA_MICRO_VERSION 22.9.0
+ENV PIRANHA_VERSION 22.11.0
 WORKDIR /root
-RUN curl -O https://repo1.maven.org/maven2/cloud/piranha/piranha-micro/$PIRANHA_MICRO_VERSION/piranha-micro-$PIRANHA_MICRO_VERSION.jar && \
-    mv piranha-micro-$PIRANHA_MICRO_VERSION.jar piranha-micro.jar
+RUN curl -O https://repo1.maven.org/maven2/cloud/piranha/dist/piranha-dist-servlet/$PIRANHA_VERSION/piranha-dist-servlet-$PIRANHA_VERSION.jar && \
+    mv piranha-dist-servlet-$PIRANHA_VERSION.jar piranha-dist-servlet.jar
 
 #
 # Run the application
 #
 FROM eclipse-temurin:17
 COPY --from=builder /root/target/piranha-start.war /root/ROOT.war
-COPY --from=dist /root/piranha-micro.jar  /root/piranha-micro.jar
+COPY --from=dist /root/piranha-dist-servlet.jar  /root/piranha-dist-servlet.jar
 EXPOSE 8080
 WORKDIR /root
-CMD ["java", "-jar", "piranha-micro.jar", "--war-file", "ROOT.war"]
+CMD ["java", "-jar", "piranha-dist-servlet.jar", "--war-file", "ROOT.war"]
