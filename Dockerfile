@@ -9,7 +9,7 @@ RUN cd /usr/local && \
 COPY . /root
 RUN export PATH=$PATH:/usr/local/apache-maven-$MAVEN_VERSION/bin && \
     cd /root && \
-    mvn --no-transfer-progress clean install
+    mvn --no-transfer-progress -DskipTests -DskipITs clean install
 
 #
 # Download the Piranha Servlet distribution
