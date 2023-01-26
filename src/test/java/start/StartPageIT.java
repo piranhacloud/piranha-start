@@ -48,7 +48,7 @@ public class StartPageIT {
     @BeforeAll
     public static void beforeAll() {
         try {
-            Thread.sleep(60000);
+            Thread.sleep(20000);
         } catch (InterruptedException ie) {
         }
     }

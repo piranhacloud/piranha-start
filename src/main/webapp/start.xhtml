@@ -4,10 +4,9 @@
 
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="jakarta.faces.core"
-      xmlns:h="jakarta.faces.html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pt="jakarta.faces.passthrough">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Piranha Start</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -16,9 +15,20 @@
         <f:view transient="true"/>
         <div>Piranha Start!</div>
         <h:form>
-            <h3>Select your runtime:</h3>
+            <h3>Java version</h3>
+            <p:selectOneRadio id="runtime"  value="#{startBean.javaVersion}">
+                <f:selectItem itemLabel="17" itemValue="17"/>
+                <f:selectItem itemLabel="19" itemValue="19"/>
+            </p:selectOneRadio>
+            <h3>Piranha runtime:</h3>
             <p:selectOneRadio id="runtime" value="#{startBean.runtime}">
-                <f:selectItem itemLabel="Core Profile" itemValue="core-profile"/>
+                <f:selectItem itemLabel="Piranha Core Profile" itemValue="coreprofile"/>
+                <f:selectItem itemLabel="Piranha Servlet"      itemValue="servlet"/>
+                <!--<f:selectItem itemLabel="Piranha Web Profile"  itemValue="webprofile"/>-->
+                <!--<f:selectItem itemLabel="Piranha MicroProfile" itemValue="servlet"/>-->
+                <!--<f:selectItem itemLabel="Piranha Micro"        itemValue="micro"/>-->
+                <!--<f:selectItem itemLabel="Piranha Server"       itemValue="server"/>-->
+                <!--<f:selectItem itemLabel="Piranha Platform"     itemValue="platform"/>-->
             </p:selectOneRadio>
             <br/>
             <p:commandButton id="submitButton" value="Download project"/>

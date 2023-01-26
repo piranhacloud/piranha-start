@@ -38,12 +38,26 @@ import jakarta.inject.Named;
 @Named(value = "startBean")
 @RequestScoped
 public class StartBean {
+    
+    /**
+     * Stores the java version.
+     */
+    private Integer javaVersion = 17;
 
     /**
-     * Stores the runtime requested.
+     * Stores the runtime.
      */
-    private String runtime;
+    private String runtime = "servlet";
 
+    /**
+     * Get the Java version.
+     * 
+     * @return the java version.
+     */
+    public Integer getJavaVersion() {
+        return javaVersion;
+    }
+    
     /**
      * Get the runtime.
      * 
@@ -53,6 +67,15 @@ public class StartBean {
         return runtime;
     }
 
+    /**
+     * Set the Java version.
+     * 
+     * @param javaVersion the java version.
+     */
+    public void setJavaVersion(Integer javaVersion) {
+        this.javaVersion = javaVersion;
+    }
+    
     /**
      * Set the runtime.
      * 
