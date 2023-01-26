@@ -15,6 +15,11 @@
         <f:view transient="true"/>
         <div>Piranha Start!</div>
         <h:form>
+            <h3>Java version</h3>
+            <p:selectOneRadio id="runtime"  value="#{startBean.javaVersion}">
+                <f:selectItem itemLabel="17" itemValue="17"/>
+                <f:selectItem itemLabel="19" itemValue="19"/>
+            </p:selectOneRadio>
             <h3>Piranha runtime:</h3>
             <p:selectOneRadio id="runtime" value="#{startBean.runtime}">
                 <f:selectItem itemLabel="Piranha Core Profile" itemValue="coreprofile"/>
