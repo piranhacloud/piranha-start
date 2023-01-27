@@ -12,20 +12,23 @@ RUN export PATH=$PATH:/usr/local/apache-maven-$MAVEN_VERSION/bin && \
     mvn --no-transfer-progress -DskipTests -DskipITs clean install
 
 #
-# Download the Piranha Servlet distribution
+# Download the Piranha Web Profile distribution
 #
 FROM eclipse-temurin:17 AS dist
-ENV PIRANHA_VERSION 22.11.0
+ENV PIRANHA_VERSION 23.1.0
 WORKDIR /root
-RUN curl -O https://repo1.maven.org/maven2/cloud/piranha/dist/piranha-dist-servlet/$PIRANHA_VERSION/piranha-dist-servlet-$PIRANHA_VERSION.jar && \
-    mv piranha-dist-servlet-$PIRANHA_VERSION.jar piranha-dist-servlet.jar
+RUN curl -O https://repo1.maven.org/maven2/cloud/piranha/dist/piranha-dist-webprofile/$PIRANHA_VERSION/piranha-dist-webprofile-$PIRANHA_VERSION.jar && \
+    mv piranha-dist-webprofile-$PIRANHA_VERSION.jar piranha-dist-webprofile.jar
 
 #
 # Run the application
 #
 FROM eclipse-temurin:17
-COPY --from=builder /root/target/piranha-start.war /root/ROOT.war
-COPY --from=dist /root/piranha-dist-servlet.jar  /root/piranha-dist-servlet.jar
+RUN useradd -m piranha
 EXPOSE 8080
-WORKDIR /root
-CMD ["java", "-jar", "piranha-dist-servlet.jar", "--war-file", "ROOT.war"]
+COPY --from=builder /root/target/piranha-start.war /home/piranha/ROOT.war
+COPY --from=dist /root/piranha-dist-webprofile.jar  /home/piranha/piranha-dist-webprofile.jar
+WORKDIR /home/piranha
+RUN chown -R piranha:piranha *
+USER piranha
+CMD ["java", "-jar", "piranha-dist-webprofile.jar", "--war-file", "ROOT.war"]
