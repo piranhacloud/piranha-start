@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2022 Manorrock.com. All Rights Reserved.
+ * Copyright (c) 2002-2023 Manorrock.com. All Rights Reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -65,6 +65,17 @@ public class StartBean {
      * Stores the runtime.
      */
     private String runtime = "servlet";
+    
+    /**
+     * Stores our model.
+     */
+    private StartModel model;
+    
+    /**
+     * Stores the project zip bean.
+     */
+    @Inject
+    private ProjectZipBean projectZipBean;
 
     /**
      * Download action.
@@ -75,7 +86,10 @@ public class StartBean {
         externalContext.setResponseHeader("Content-Disposition", "attachment; filename=project.zip");
         try {
             OutputStream outputStream = externalContext.getResponseOutputStream();
+            projectZipBean.write(model, outputStream);
+            outputStream.flush();
         } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
         facesContext.responseComplete();
     }

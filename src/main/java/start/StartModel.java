@@ -32,5 +32,5 @@ package start;
  * 
  * @author Manfred Riem (mriem@manorrock.com)
  */
-public class Start {
+public class StartModel {
 }
