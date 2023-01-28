@@ -28,14 +28,15 @@
 package start;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Named;
+import jakarta.ws.rs.ApplicationPath;
+import jakarta.ws.rs.core.Application;
 
 /**
- * The one and only application bean.
+ * The REST application class.
  * 
  * @author Manfred Riem (mriem@manorrock.com)
  */
+@ApplicationPath("api")
 @ApplicationScoped
-@Named("applicationBean")
-public class ApplicationBean {
+public class RestApplication extends Application {
 }
