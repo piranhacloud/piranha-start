@@ -28,17 +28,34 @@
 package start;
 
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * The bean for the /start.xhtml page.
- * 
+ *
  * @author Manfred Riem (mriem@manorrock.com)
  */
 @Named(value = "startBean")
 @RequestScoped
 public class StartBean {
-    
+
+    /**
+     * Stores the external context.
+     */
+    @Inject
+    private ExternalContext externalContext;
+
+    /**
+     * Stores the faces context.
+     */
+    @Inject
+    private FacesContext facesContext;
+
     /**
      * Stores the java version.
      */
@@ -50,17 +67,31 @@ public class StartBean {
     private String runtime = "servlet";
 
     /**
+     * Download action.
+     */
+    public void download() {
+        externalContext.responseReset();
+        externalContext.setResponseContentType("application/octet-stream");
+        externalContext.setResponseHeader("Content-Disposition", "attachment; filename=project.zip");
+        try {
+            OutputStream outputStream = externalContext.getResponseOutputStream();
+        } catch (IOException ioe) {
+        }
+        facesContext.responseComplete();
+    }
+
+    /**
      * Get the Java version.
-     * 
+     *
      * @return the java version.
      */
     public Integer getJavaVersion() {
         return javaVersion;
     }
-    
+
     /**
      * Get the runtime.
-     * 
+     *
      * @return the runtime.
      */
     public String getRuntime() {
@@ -69,16 +100,16 @@ public class StartBean {
 
     /**
      * Set the Java version.
-     * 
+     *
      * @param javaVersion the java version.
      */
     public void setJavaVersion(Integer javaVersion) {
         this.javaVersion = javaVersion;
     }
-    
+
     /**
      * Set the runtime.
-     * 
+     *
      * @param runtime the runtime.
      */
     public void setRuntime(String runtime) {
