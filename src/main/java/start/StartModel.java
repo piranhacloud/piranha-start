@@ -33,4 +33,27 @@ package start;
  * @author Manfred Riem (mriem@manorrock.com)
  */
 public class StartModel {
+    
+    /**
+     * Stores the Java version.
+     */
+    private Integer javaVersion = 17;
+    
+    /**
+     * Get the Java version.
+     *
+     * @return the java version.
+     */
+    public Integer getJavaVersion() {
+        return javaVersion;
+    }
+
+    /**
+     * Set the Java version.
+     *
+     * @param javaVersion the java version.
+     */
+    public void setJavaVersion(Integer javaVersion) {
+        this.javaVersion = javaVersion;
+    }
 }

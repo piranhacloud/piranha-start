@@ -65,8 +65,19 @@ public class ProjectZipBean {
                     <artifactId>start</artifactId>
                     <version>1-SNAPSHOT</version>
                     <packaging>war</packaging>
+                    <properties>
+                      <java.version>%s</java.version>
+                    </properties>
                     <build>
                         <plugins>
+                            <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-compiler-plugin</artifactId>
+                                <version>3.10.1</version>
+                                <configuration>
+                                    <release>${java.version}</release>
+                                </configuration>
+                            </plugin>
                             <plugin>
                                 <groupId>org.apache.maven.plugins</groupId>
                                 <artifactId>maven-war-plugin</artifactId>
@@ -79,6 +90,7 @@ public class ProjectZipBean {
                     </build>
                 </project>
                 """;
+        pomFile = String.format(pomFile, model.getJavaVersion());
         zipOutputStream.write(pomFile.getBytes(Charset.forName("UTF-8")));
         zipOutputStream.closeEntry();
     }
