@@ -30,6 +30,7 @@ package start;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.model.SelectItem;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.IOException;
@@ -57,20 +58,15 @@ public class StartBean {
     private FacesContext facesContext;
 
     /**
-     * Stores the java version.
-     */
-    private Integer javaVersion = 17;
-
-    /**
      * Stores the runtime.
      */
     private String runtime = "servlet";
-    
+
     /**
      * Stores our model.
      */
-    private StartModel model;
-    
+    private StartModel model = new StartModel();
+
     /**
      * Stores the project zip bean.
      */
@@ -95,12 +91,24 @@ public class StartBean {
     }
 
     /**
-     * Get the Java version.
-     *
-     * @return the java version.
+     * Get the Java versions.
+     * 
+     * @return the Java versions.
      */
-    public Integer getJavaVersion() {
-        return javaVersion;
+    public SelectItem[] getJavaVersions() {
+        return new SelectItem[]{
+            new SelectItem("17", "17"),
+            new SelectItem("19", "19")
+        };
+    }
+    
+    /**
+     * Get the model.
+     * 
+     * @return the model.
+     */
+    public StartModel getModel() {
+        return model;
     }
 
     /**
@@ -111,14 +119,14 @@ public class StartBean {
     public String getRuntime() {
         return runtime;
     }
-
+    
     /**
-     * Set the Java version.
-     *
-     * @param javaVersion the java version.
+     * Set the model.
+     * 
+     * @param model the model.
      */
-    public void setJavaVersion(Integer javaVersion) {
-        this.javaVersion = javaVersion;
+    public void setModel(StartModel model) {
+        this.model = model;
     }
 
     /**
