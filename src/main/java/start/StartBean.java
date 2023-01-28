@@ -31,7 +31,7 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 
 /**
- * The StartBean.
+ * The bean for the /start.xhtml page.
  * 
  * @author Manfred Riem (mriem@manorrock.com)
  */
