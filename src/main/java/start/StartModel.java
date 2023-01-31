@@ -40,12 +40,26 @@ public class StartModel {
     private Integer javaVersion = 17;
     
     /**
+     * Stores the packaging.
+     */
+    private String packaging = "war";
+    
+    /**
      * Get the Java version.
      *
      * @return the java version.
      */
     public Integer getJavaVersion() {
         return javaVersion;
+    }
+    
+    /**
+     * Get the packaging.
+     * 
+     * @return the packaging.
+     */
+    public String getPackaging() {
+        return packaging;
     }
 
     /**
@@ -55,5 +69,14 @@ public class StartModel {
      */
     public void setJavaVersion(Integer javaVersion) {
         this.javaVersion = javaVersion;
+    }
+    
+    /**
+     * Set the packaging.
+     * 
+     * @param packaging the packaging.
+     */
+    public void setPackaging(String packaging) {
+        this.packaging = packaging;
     }
 }

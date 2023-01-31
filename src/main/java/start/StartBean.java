@@ -110,6 +110,17 @@ public class StartBean {
     public StartModel getModel() {
         return model;
     }
+    
+    /**
+     * Get the packaging.
+     * 
+     * @return the packaging.
+     */
+    public SelectItem[] getPackagings() {
+        return new SelectItem[]{ 
+            new SelectItem("war", "War")
+        };
+    }
 
     /**
      * Get the runtime.
