@@ -118,6 +118,7 @@ public class StartBean {
      */
     public SelectItem[] getPackagings() {
         return new SelectItem[]{ 
+            new SelectItem("jar", "Jar"),
             new SelectItem("war", "War")
         };
     }

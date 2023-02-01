@@ -43,6 +43,39 @@ import java.util.zip.ZipOutputStream;
 public class ProjectZipBean {
     
     /**
+     * Collect the appropriate build plugins for a pom.xml file.
+     * 
+     * @param model the model.
+     * @return the build plugin snippet.
+     */
+    private String getBuildPluginsForPomXml(StartModel model) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("""
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <release>${java.version}</release>
+                </configuration>
+            </plugin>
+            """);
+        if (model.getPackaging().equals("war")) {
+            builder.append("""
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.3.2</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
+                """);
+        }
+        return builder.toString();
+    }
+    
+    /**
      * Write pom.xml file.
      * 
      * @param model the model.
@@ -64,33 +97,21 @@ public class ProjectZipBean {
                     <groupId>start</groupId>
                     <artifactId>start</artifactId>
                     <version>1-SNAPSHOT</version>
-                    <packaging>war</packaging>
+                    <packaging>%s</packaging>
                     <properties>
                       <java.version>%s</java.version>
                     </properties>
                     <build>
                         <plugins>
-                            <plugin>
-                                <groupId>org.apache.maven.plugins</groupId>
-                                <artifactId>maven-compiler-plugin</artifactId>
-                                <version>3.10.1</version>
-                                <configuration>
-                                    <release>${java.version}</release>
-                                </configuration>
-                            </plugin>
-                            <plugin>
-                                <groupId>org.apache.maven.plugins</groupId>
-                                <artifactId>maven-war-plugin</artifactId>
-                                <version>3.3.2</version>
-                                <configuration>
-                                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                                </configuration>
-                            </plugin>
+                          %s
                         </plugins>
                     </build>
                 </project>
                 """;
-        pomFile = String.format(pomFile, model.getJavaVersion());
+        pomFile = String.format(pomFile,
+                model.getPackaging(),
+                model.getJavaVersion(),
+                getBuildPluginsForPomXml(model));
         zipOutputStream.write(pomFile.getBytes(Charset.forName("UTF-8")));
         zipOutputStream.closeEntry();
     }
