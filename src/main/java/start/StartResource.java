@@ -28,30 +28,51 @@
 package start;
 
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PUT;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.WebApplicationException;
+import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 import static jakarta.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.StreamingOutput;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URI;
 
 /**
- * REST Web Service
+ * REST endpoint
  *
  * @author manfred
  */
 @Path("start")
 @RequestScoped
 public class StartResource {
-
+    
+    /**
+     * Stores the project zip bean.
+     */
+    @Inject
+    private ProjectZipBean projectZipBean;
+    
     /**
      * Download endpoint.
      * 
+     * @param model the model.
      * @return the response.
      */
+    @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_OCTET_STREAM)
     @PUT
-    public Response download() {
-        return Response.ok().contentLocation(URI.create("project.zip")).build();
+    public Response download(StartModel model) {
+        StreamingOutput streamingOutput = new StreamingOutput() {
+            @Override
+            public void write(OutputStream outputStream) throws IOException, WebApplicationException {
+                projectZipBean.write(model, outputStream);
+            }
+        };
+        return Response.ok(streamingOutput).contentLocation(URI.create("project.zip")).build();
     }
 }
