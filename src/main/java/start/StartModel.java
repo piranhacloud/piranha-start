@@ -45,6 +45,11 @@ public class StartModel {
     private String packaging = "war";
     
     /**
+     * Stores the stack.
+     */
+    private String stack = "webprofile";
+    
+    /**
      * Get the Java version.
      *
      * @return the java version.
@@ -63,6 +68,15 @@ public class StartModel {
     }
 
     /**
+     * Get the stack.
+     * 
+     * @return the stack.
+     */
+    public String getStack() {
+        return stack;
+    }
+
+    /**
      * Set the Java version.
      *
      * @param javaVersion the java version.
@@ -78,5 +92,14 @@ public class StartModel {
      */
     public void setPackaging(String packaging) {
         this.packaging = packaging;
+    }
+
+    /**
+     * Set the stack.
+     * 
+     * @param stack the stack.
+     */
+    public void setStack(String stack) {
+        this.stack = stack;
     }
 }

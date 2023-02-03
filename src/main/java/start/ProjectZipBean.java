@@ -76,7 +76,28 @@ public class ProjectZipBean {
         }
         return builder.toString();
     }
-        
+    
+    /**
+     * Collect the appropriate dependencies for a pom.xml file.
+     * 
+     * @param model the model.
+     * @return the build plugin snippet.
+     */
+    private String getDependenciesForPomXml(StartModel model) {
+        StringBuilder builder = new StringBuilder();
+        if (model.getStack().equals("webprofile")) {
+            builder.append("""
+                <dependency>
+                    <groupId>jakarta.platform</groupId>
+                    <artifactId>jakarta.jakartaee-web-api</artifactId>
+                    <version>10.0.0</version>
+                    <scope>provided</scope>
+                </dependency>
+                """);
+        }
+        return builder.toString();
+    }
+           
     /**
      * Write the project.zip file.
      * 
@@ -132,12 +153,16 @@ public class ProjectZipBean {
                           %s
                         </plugins>
                     </build>
+                    <dependencies>
+                        %s
+                    </dependencies>
                 </project>
                 """;
         pomFile = String.format(pomFile,
                 model.getPackaging(),
                 model.getJavaVersion(),
-                getBuildPluginsForPomXml(model));
+                getBuildPluginsForPomXml(model),
+                getDependenciesForPomXml(model));
         zipOutputStream.write(pomFile.getBytes(Charset.forName("UTF-8")));
         zipOutputStream.closeEntry();
     }

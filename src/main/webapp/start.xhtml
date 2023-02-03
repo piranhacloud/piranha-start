@@ -20,6 +20,9 @@
             <h:outputLabel value="Packaging"/>: <h:selectOneRadio id="packagingRadio" value="#{startBean.model.packaging}">
                 <f:selectItems value="#{startBean.packagings}"/>
             </h:selectOneRadio>
+            <h:outputLabel value="Stack"/>: <h:selectOneRadio id="stack" value="#{startBean.model.stack}">
+                <f:selectItems value="#{startBean.stacks}"/>
+            </h:selectOneRadio>
             <h:commandButton id="downloadButton" action="#{startBean.download}" value="Download"/>
         </h:form>
     </h:body>

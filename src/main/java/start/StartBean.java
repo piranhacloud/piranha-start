@@ -112,14 +112,25 @@ public class StartBean {
     }
     
     /**
-     * Get the packaging.
+     * Get the packagings.
      * 
-     * @return the packaging.
+     * @return the packagings.
      */
     public SelectItem[] getPackagings() {
         return new SelectItem[]{ 
             new SelectItem("jar", "Jar"),
             new SelectItem("war", "War")
+        };
+    }
+    
+    /**
+     * Get the stacks.
+     * 
+     * @return the stacks.
+     */
+    public SelectItem[] getStacks() {
+        return new SelectItem[] {
+            new SelectItem("webprofile", "Jakarta Web Profile 10"),
         };
     }
 
