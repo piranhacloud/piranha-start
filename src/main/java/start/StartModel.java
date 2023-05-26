@@ -27,6 +27,9 @@
  */
 package start;
 
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
+
 /**
  * The start model.
  * 
@@ -101,5 +104,16 @@ public class StartModel {
      */
     public void setStack(String stack) {
         this.stack = stack;
+    }
+    
+    /**
+     * Helper method.
+     * 
+     * @param json the JSON string.
+     * @return the model.
+     */
+    public static StartModel valueOf(String json) {
+        Jsonb jsonb = JsonbBuilder.create();
+        return jsonb.fromJson(json, StartModel.class);
     }
 }

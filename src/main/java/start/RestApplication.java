@@ -33,7 +33,7 @@ import jakarta.ws.rs.core.Application;
 
 /**
  * The REST application class.
- * 
+ *
  * @author Manfred Riem (mriem@manorrock.com)
  */
 @ApplicationPath("api")

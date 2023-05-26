@@ -31,8 +31,11 @@ import jakarta.ws.rs.Path;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DefaultValue;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.WebApplicationException;
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 import static jakarta.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM;
@@ -58,6 +61,24 @@ public class StartResource {
     private ProjectZipBean projectZipBean;
     
     /**
+     * Use GET.
+     * 
+     * @param model the model.
+     * @return the response.
+     */
+    @GET
+    @Produces(APPLICATION_OCTET_STREAM)
+    public Response get(@DefaultValue("{}") @QueryParam("model") StartModel model) {
+        StreamingOutput streamingOutput = new StreamingOutput() {
+            @Override
+            public void write(OutputStream outputStream) throws IOException, WebApplicationException {
+                projectZipBean.write(model, outputStream);
+            }
+        };
+        return Response.ok().entity(streamingOutput).build();
+    }
+    
+    /**
      * Download endpoint.
      * 
      * @param model the model.
@@ -66,7 +87,7 @@ public class StartResource {
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_OCTET_STREAM)
     @PUT
-    public Response download(StartModel model) {
+    public Response put(StartModel model) {
         StreamingOutput streamingOutput = new StreamingOutput() {
             @Override
             public void write(OutputStream outputStream) throws IOException, WebApplicationException {
