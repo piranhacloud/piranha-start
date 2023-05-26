@@ -31,4 +31,4 @@ jobs:
     - name: Build and push image
       run: |
         docker build -f Dockerfile -t ${{ secrets.DOCKER_REGISTRY }}/piranhacloud/start:latest .
-        docker push ${{ secrets.DOCKER_REGISTRY }}piranhacloud/start:latest
+        docker push ${{ secrets.DOCKER_REGISTRY }}/piranhacloud/start:latest
