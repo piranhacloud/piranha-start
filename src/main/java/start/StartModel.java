@@ -29,6 +29,7 @@ package start;
 
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
+import java.util.List;
 
 /**
  * The start model.
@@ -36,6 +37,11 @@ import jakarta.json.bind.JsonbBuilder;
  * @author Manfred Riem (mriem@manorrock.com)
  */
 public class StartModel {
+    
+    /**
+     * Stores the choices.
+     */
+    private List<String> choices;
     
     /**
      * Stores the Java version.
@@ -51,6 +57,15 @@ public class StartModel {
      * Stores the stack.
      */
     private String stack = "webprofile";
+    
+    /**
+     * Get the choices.
+     * 
+     * @return the choices.
+     */
+    public List<String> getChoices() {
+        return choices;
+    }
     
     /**
      * Get the Java version.
@@ -77,6 +92,15 @@ public class StartModel {
      */
     public String getStack() {
         return stack;
+    }
+
+    /**
+     * Set the choices.
+     * 
+     * @param choices the choices. 
+     */
+    public void setChoices(List<String> choices) {
+        this.choices = choices;
     }
 
     /**
