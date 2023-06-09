@@ -27,6 +27,7 @@
  */
 package start;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
@@ -35,6 +36,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.IOException;
 import java.io.OutputStream;
+import org.primefaces.model.DualListModel;
 
 /**
  * The bean for the /start.xhtml page.
@@ -45,6 +47,11 @@ import java.io.OutputStream;
 @RequestScoped
 public class StartBean {
 
+    /**
+     * Stores the choices model.
+     */
+    private DualListModel<String> choices = new DualListModel<>();
+    
     /**
      * Stores the external context.
      */
@@ -89,6 +96,15 @@ public class StartBean {
         }
         facesContext.responseComplete();
     }
+    
+    /**
+     * Get the choices.
+     * 
+     * @return the choices.
+     */
+    public DualListModel<String> getChoices() {
+        return choices;
+    }
 
     /**
      * Get the Java versions.
@@ -130,8 +146,17 @@ public class StartBean {
      */
     public SelectItem[] getStacks() {
         return new SelectItem[] {
+            new SelectItem("coreprofile", "Jakarta Core Profile 10"),
             new SelectItem("webprofile", "Jakarta Web Profile 10"),
         };
+    }
+    
+    /**
+     * Initialize.
+     */
+    @PostConstruct
+    public void initialize() {
+//        choices.getSource().add("Jakarta RESTful Web Services 3.1 example");
     }
 
     /**
