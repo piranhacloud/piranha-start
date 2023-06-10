@@ -84,6 +84,7 @@ public class StartBean {
      * Download action.
      */
     public void download() {
+        model.setChoices(choices.getTarget());
         externalContext.responseReset();
         externalContext.setResponseContentType("application/octet-stream");
         externalContext.setResponseHeader("Content-Disposition", "attachment; filename=project.zip");
@@ -156,7 +157,7 @@ public class StartBean {
      */
     @PostConstruct
     public void initialize() {
-//        choices.getSource().add("Jakarta RESTful Web Services 3.1 example");
+        choices.getSource().add("Jakarta RESTful Web Services 3.1 example");
     }
 
     /**
@@ -166,6 +167,15 @@ public class StartBean {
      */
     public String getRuntime() {
         return runtime;
+    }
+    
+    /**
+     * Set the choices.
+     * 
+     * @param choices the choices.
+     */
+    public void setChoices(DualListModel<String> choices) {
+        this.choices = choices;
     }
     
     /**
