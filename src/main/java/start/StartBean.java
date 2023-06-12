@@ -157,6 +157,7 @@ public class StartBean {
      */
     @PostConstruct
     public void initialize() {
+        choices.getSource().add("HTML Hello World example");
         choices.getSource().add("Jakarta RESTful Web Services 3.1 example");
     }
 
