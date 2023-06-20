@@ -157,6 +157,7 @@ public class StartBean {
      */
     @PostConstruct
     public void initialize() {
+        choices.getSource().add("Jakarta Core Profile 10 - JUnit integration test example");
         choices.getSource().add("Jakarta Faces 4.0 - Hello World example");
         choices.getSource().add("Jakarta JSON Binding 3.0 - Hello JSON REST example");
         choices.getSource().add("Jakarta Persistence 3.1 - Hello JPA REST example");
