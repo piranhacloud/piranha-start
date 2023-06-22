@@ -14,7 +14,7 @@
     <h:body>
         <f:view transient="true"/>
         <h1>Piranha Start</h1>
-        <h:form>
+        <h:form id="form">
             <h:outputLabel value="Java version"/>: <h:selectOneRadio id="javaVersionRadio" value="#{startBean.model.javaVersion}">
                 <f:selectItems value="#{startBean.javaVersions}"/>
             </h:selectOneRadio>
@@ -25,7 +25,7 @@
                 <f:selectItems value="#{startBean.stacks}"/>
             </h:selectOneRadio>
             <p:pickList value="#{startBean.choices}" var="choice" itemLabel="#{choice}" itemValue="#{choice}"/>
-            <h:commandButton id="downloadButton" action="#{startBean.download}" value="Download"/>
+            <h:commandButton id="download" action="#{startBean.download}" value="Download"/>
         </h:form>
     </h:body>
 </html>
