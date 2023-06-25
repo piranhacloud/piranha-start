@@ -23,19 +23,19 @@ jobs:
     - name: Build WAR
       run: |
         sudo apt-get update
-        sudo apt-get -y install libegl1\                                                                  ║
-            libvpx7\                                                                                   ║
-            libevent-2.1-7\                                                                            ║
-            libopus0\                                                                                  ║
-            libopengl0\                                                                                ║
-            libwoff1\                                                                                  ║
-            libharfbuzz-icu0\                                                                          ║
-            libgstreamer-plugins-base1.0-0\                                                            ║
-            libgstreamer-gl1.0-0\                                                                      ║
-            libhyphen0\                                                                                ║
-            libmanette-0.2-0\                                                                          ║
-            libgles2\                                                                                  ║
-            gstreamer1.0-libav                                                                         ║
+        sudo apt-get -y install libegl1\
+            libvpx7\
+            libevent-2.1-7\
+            libopus0\
+            libopengl0\
+            libwoff1\
+            libharfbuzz-icu0\
+            libgstreamer-plugins-base1.0-0\
+            libgstreamer-gl1.0-0\
+            libhyphen0\
+            libmanette-0.2-0\
+            libgles2\
+            gstreamer1.0-libav
         mvn --no-transfer-progress -B install
     - name: Login to GHCR
       uses: docker/login-action@v2
