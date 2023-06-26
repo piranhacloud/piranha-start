@@ -147,6 +147,7 @@ public class StartBean {
      */
     public SelectItem[] getStacks() {
         return new SelectItem[] {
+            new SelectItem("none", "None"),
             new SelectItem("coreprofile", "Jakarta Core Profile 10"),
             new SelectItem("webprofile", "Jakarta Web Profile 10"),
         };
