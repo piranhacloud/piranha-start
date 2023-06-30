@@ -36,7 +36,6 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.IOException;
 import java.io.OutputStream;
-import org.primefaces.model.DualListModel;
 
 /**
  * The bean for the /start.xhtml page.
@@ -46,11 +45,6 @@ import org.primefaces.model.DualListModel;
 @Named(value = "startBean")
 @RequestScoped
 public class StartBean {
-
-    /**
-     * Stores the choices model.
-     */
-    private DualListModel<String> choices = new DualListModel<>();
     
     /**
      * Stores the external context.
@@ -84,7 +78,6 @@ public class StartBean {
      * Download action.
      */
     public void download() {
-        model.setChoices(choices.getTarget());
         externalContext.responseReset();
         externalContext.setResponseContentType("application/octet-stream");
         externalContext.setResponseHeader("Content-Disposition", "attachment; filename=project.zip");
@@ -98,15 +91,6 @@ public class StartBean {
         facesContext.responseComplete();
     }
     
-    /**
-     * Get the choices.
-     * 
-     * @return the choices.
-     */
-    public DualListModel<String> getChoices() {
-        return choices;
-    }
-
     /**
      * Get the Java versions.
      * 
@@ -158,13 +142,6 @@ public class StartBean {
      */
     @PostConstruct
     public void initialize() {
-        choices.getSource().add("Jakarta Core Profile 10 - JUnit integration test example");
-        choices.getSource().add("Jakarta Core Profile 10 - VSCode integration example");
-        choices.getSource().add("Jakarta Faces 4.0 - Hello World example");
-        choices.getSource().add("Jakarta JSON Binding 3.0 - Hello JSON REST example");
-        choices.getSource().add("Jakarta Persistence 3.1 - Hello JPA REST example");
-        choices.getSource().add("Jakarta RESTful Web Services 3.1 - Hello REST example");
-        choices.getSource().add("Static HTML Hello World example");
     }
 
     /**
@@ -174,15 +151,6 @@ public class StartBean {
      */
     public String getRuntime() {
         return runtime;
-    }
-    
-    /**
-     * Set the choices.
-     * 
-     * @param choices the choices.
-     */
-    public void setChoices(DualListModel<String> choices) {
-        this.choices = choices;
     }
     
     /**
