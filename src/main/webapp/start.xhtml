@@ -24,7 +24,6 @@
             <h:outputLabel value="Stack"/>: <h:selectOneRadio id="stack" value="#{startBean.model.stack}">
                 <f:selectItems value="#{startBean.stacks}"/>
             </h:selectOneRadio>
-            <p:pickList value="#{startBean.choices}" var="choice" itemLabel="#{choice}" itemValue="#{choice}"/>
             <h:commandButton id="download" action="#{startBean.download}" value="Download"/>
         </h:form>
     </h:body>
