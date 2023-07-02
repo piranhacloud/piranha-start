@@ -36,6 +36,8 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.IOException;
 import java.io.OutputStream;
+import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.TreeNode;
 
 /**
  * The bean for the /start.xhtml page.
@@ -45,7 +47,12 @@ import java.io.OutputStream;
 @Named(value = "startBean")
 @RequestScoped
 public class StartBean {
-    
+
+    /**
+     * Stores the tree node.
+     */
+    private TreeNode examples;
+
     /**
      * Stores the external context.
      */
@@ -90,10 +97,19 @@ public class StartBean {
         }
         facesContext.responseComplete();
     }
-    
+
+    /**
+     * Get the examples.
+     *
+     * @return the examples.
+     */
+    public TreeNode getExamples() {
+        return examples;
+    }
+
     /**
      * Get the Java versions.
-     * 
+     *
      * @return the Java versions.
      */
     public SelectItem[] getJavaVersions() {
@@ -102,46 +118,46 @@ public class StartBean {
             new SelectItem("19", "19")
         };
     }
-    
+
     /**
      * Get the model.
-     * 
+     *
      * @return the model.
      */
     public StartModel getModel() {
         return model;
     }
-    
+
     /**
      * Get the packagings.
-     * 
+     *
      * @return the packagings.
      */
     public SelectItem[] getPackagings() {
-        return new SelectItem[]{ 
+        return new SelectItem[]{
             new SelectItem("jar", "Jar"),
             new SelectItem("war", "War")
         };
     }
-    
+
     /**
      * Get the stacks.
-     * 
+     *
      * @return the stacks.
      */
     public SelectItem[] getStacks() {
-        return new SelectItem[] {
+        return new SelectItem[]{
             new SelectItem("servlet", "Jakarta Servlet 6"),
             new SelectItem("coreprofile", "Jakarta Core Profile 10"),
-            new SelectItem("webprofile", "Jakarta Web Profile 10"),
-        };
+            new SelectItem("webprofile", "Jakarta Web Profile 10"),};
     }
-    
+
     /**
      * Initialize.
      */
     @PostConstruct
     public void initialize() {
+        examples = new DefaultTreeNode("No examples available");
     }
 
     /**
@@ -152,10 +168,19 @@ public class StartBean {
     public String getRuntime() {
         return runtime;
     }
-    
+
+    /**
+     * Set the examples.
+     *
+     * @param examples the examples.
+     */
+    public void setExamples(TreeNode examples) {
+        this.examples = examples;
+    }
+
     /**
      * Set the model.
-     * 
+     *
      * @param model the model.
      */
     public void setModel(StartModel model) {
