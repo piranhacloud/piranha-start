@@ -27,7 +27,7 @@
  */
 package start;
 
-import jakarta.enterprise.context.Dependent;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 import java.io.IOException;
@@ -41,7 +41,7 @@ import java.util.zip.ZipOutputStream;
  * 
  * @author Manfred Riem (mriem@manorrock.com)
  */
-@Dependent
+@ApplicationScoped
 public class ProjectZipBean {
     
     /**
