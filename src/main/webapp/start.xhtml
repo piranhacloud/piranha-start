@@ -24,7 +24,10 @@
             <h:outputLabel value="Stack"/>: <h:selectOneRadio id="stack" value="#{startBean.model.stack}">
                 <f:selectItems value="#{startBean.stacks}"/>
             </h:selectOneRadio>
-            <p:treeTable value="#{startBean.examples}">
+            <p:treeTable value="#{startBean.examples}" var="node">
+                <p:column>
+                    <h:outputText value="#{node}"/>
+                </p:column>
             </p:treeTable>
             <h:commandButton id="download" action="#{startBean.download}" value="Download"/>
         </h:form>

@@ -36,6 +36,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.Serializable;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
@@ -46,7 +47,7 @@ import org.primefaces.model.TreeNode;
  */
 @Named(value = "startBean")
 @RequestScoped
-public class StartBean {
+public class StartBean implements Serializable {
 
     /**
      * Stores the tree node.
@@ -157,7 +158,9 @@ public class StartBean {
      */
     @PostConstruct
     public void initialize() {
-        examples = new DefaultTreeNode("No examples available");
+        examples = new DefaultTreeNode("Root Node");
+        TreeNode servletExamples = new DefaultTreeNode("Servlet examples", examples);
+        servletExamples.getChildren().add(new DefaultTreeNode("Hello World HTML example"));
     }
 
     /**
