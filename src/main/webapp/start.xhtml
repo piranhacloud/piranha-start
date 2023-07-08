@@ -15,21 +15,21 @@
         <f:view transient="true"/>
         <h1>Piranha Start</h1>
         <h:form id="form">
-            <h:outputLabel value="Java version"/>: <h:selectOneRadio id="javaVersionRadio" value="#{startBean.model.javaVersion}">
+            <p:outputLabel value="Java version"/>: <p:selectOneRadio id="javaVersionRadio" value="#{startBean.model.javaVersion}">
                 <f:selectItems value="#{startBean.javaVersions}"/>
-            </h:selectOneRadio>
-            <h:outputLabel value="Packaging"/>: <h:selectOneRadio id="packagingRadio" value="#{startBean.model.packaging}">
+            </p:selectOneRadio>
+            <p:outputLabel value="Packaging"/>: <p:selectOneRadio id="packagingRadio" value="#{startBean.model.packaging}">
                 <f:selectItems value="#{startBean.packagings}"/>
-            </h:selectOneRadio>
-            <h:outputLabel value="Stack"/>: <h:selectOneRadio id="stack" value="#{startBean.model.stack}">
+            </p:selectOneRadio>
+            <p:outputLabel value="Stack"/>: <p:selectOneRadio id="stack" value="#{startBean.model.stack}">
                 <f:selectItems value="#{startBean.stacks}"/>
-            </h:selectOneRadio>
+            </p:selectOneRadio>
             <p:treeTable value="#{startBean.examples}" var="node">
                 <p:column>
                     <h:outputText value="#{node}"/>
                 </p:column>
             </p:treeTable>
-            <h:commandButton id="download" action="#{startBean.download}" value="Download"/>
+            <p:commandButton id="download" action="#{startBean.download}" value="Download"/>
         </h:form>
     </h:body>
 </html>
