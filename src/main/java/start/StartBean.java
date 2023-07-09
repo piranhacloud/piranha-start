@@ -52,7 +52,7 @@ public class StartBean implements Serializable {
     /**
      * Stores the tree node.
      */
-    private TreeNode examples;
+    private TreeNode<Example> examples;
 
     /**
      * Stores the external context.
@@ -158,9 +158,9 @@ public class StartBean implements Serializable {
      */
     @PostConstruct
     public void initialize() {
-        examples = new DefaultTreeNode("Root Node");
-        TreeNode servletExamples = new DefaultTreeNode("Servlet examples", examples);
-        servletExamples.getChildren().add(new DefaultTreeNode("Hello World HTML example"));
+        examples = new DefaultTreeNode(new Example("Root Node"));
+        TreeNode servletExamples = new DefaultTreeNode(new Example("Servlet examples"), examples);
+        servletExamples.getChildren().add(new DefaultTreeNode(new Example("Hello World HTML example")));
     }
 
     /**
