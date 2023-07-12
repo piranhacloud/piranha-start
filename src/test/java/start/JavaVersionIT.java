@@ -85,12 +85,12 @@ public class JavaVersionIT {
     }
 
     /**
-     * Test the 'Java 19' choice.
+     * Test the 'Java 20' choice.
      *
      * @throws Exception when an error occurs.
      */
     @Test
-    public void testJava19() throws Exception {
+    public void testJava20() throws Exception {
         List<BrowserType> browserTypes = Arrays.asList(
                 playwright.chromium(),
                 playwright.firefox(),
@@ -101,7 +101,7 @@ public class JavaVersionIT {
                 BrowserContext context = browser.newContext();
                 Page page = context.newPage();
                 page.navigate("http://localhost:8080/piranha-start/start.xhtml");
-                page.getByText("19").click();
+                page.getByText("20").click();
                 page.onDownload((download) -> {
                     assertEquals("project.zip", download.suggestedFilename());
                 });
