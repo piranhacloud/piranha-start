@@ -29,7 +29,7 @@
                     <h:outputText value="#{example.description}"/>
                 </p:column>
                 <p:column>
-                    <p:selectBooleanCheckbox value="#{example.selected}"/>
+                    <p:selectBooleanCheckbox rendered="#{example.selectable}" value="#{example.selected}"/>
                 </p:column>
             </p:treeTable>
             <p:commandButton id="download" action="#{startBean.download}" value="Download"/>

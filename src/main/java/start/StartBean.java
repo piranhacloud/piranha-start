@@ -158,9 +158,9 @@ public class StartBean implements Serializable {
      */
     @PostConstruct
     public void initialize() {
-        examples = new DefaultTreeNode(new Example("Root Node"));
-        TreeNode servletExamples = new DefaultTreeNode(new Example("Servlet examples"), examples);
-        servletExamples.getChildren().add(new DefaultTreeNode(new Example("Hello World HTML example")));
+        examples = new DefaultTreeNode(new Example("Root Node", false));
+        TreeNode servletExamples = new DefaultTreeNode(new Example("Servlet examples", false), examples);
+        servletExamples.getChildren().add(new DefaultTreeNode(new Example("Hello World HTML example", true)));
     }
 
     /**

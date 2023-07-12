@@ -42,6 +42,11 @@ public class Example implements Serializable {
     private String description;
     
     /**
+     * Stores the selectable flag.
+     */
+    private boolean selectable;
+    
+    /**
      * Stores the selected flag.
      */
     private boolean selected;
@@ -60,6 +65,17 @@ public class Example implements Serializable {
     public Example(String description) {
         this.description = description;
     }
+    
+    /**
+     * Constructor.
+     * 
+     * @param description the description. 
+     * @param selectable the selectable flag.
+     */
+    public Example(String description, boolean selectable) {
+        this.description = description;
+        this.selectable = selectable;
+    }
 
     /**
      * Get the description.
@@ -70,6 +86,15 @@ public class Example implements Serializable {
         return description;
     }
 
+    /**
+     * Is the example selectable.
+     * 
+     * @return true if it is, false otherwise.
+     */
+    public boolean isSelectable() {
+        return selectable;
+    }   
+    
     /**
      * Is the example selected.
      * 
@@ -86,6 +111,15 @@ public class Example implements Serializable {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * Set the selectable flag.
+     * 
+     * @param selectable the selectable flag.
+     */
+    public void setSelectable(boolean selectable) {
+        this.selectable = selectable;
     }
 
     /**
