@@ -42,6 +42,11 @@ public class Example implements Serializable {
     private String description;
     
     /**
+     * Stores the disabled flag.
+     */
+    private boolean disabled;
+    
+    /**
      * Stores the selectable flag.
      */
     private boolean selectable;
@@ -87,6 +92,15 @@ public class Example implements Serializable {
     }
 
     /**
+     * Is the example disabled.
+     * 
+     * @return true if it is, false otherwise.
+     */
+    public boolean isDisabled() {
+        return disabled;
+    }
+
+    /**
      * Is the example selectable.
      * 
      * @return true if it is, false otherwise.
@@ -111,6 +125,15 @@ public class Example implements Serializable {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * Set the disabled flag.
+     * 
+     * @param disabled the disabled flag.
+     */
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
     }
 
     /**
