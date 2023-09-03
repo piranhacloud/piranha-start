@@ -24,14 +24,9 @@
             <p:outputLabel value="Stack"/>: <p:selectOneRadio id="stack" value="#{startBean.model.stack}">
                 <f:selectItems value="#{startBean.stacks}"/>
             </p:selectOneRadio>
-            <p:treeTable value="#{startBean.examples}" var="example">
-                <p:column>
-                    <h:outputText value="#{example.description}"/>
-                </p:column>
-                <p:column>
-                    <p:selectBooleanCheckbox rendered="#{example.selectable}" value="#{example.selected}"/>
-                </p:column>
-            </p:treeTable>
+            <h:selectOneListbox value="#{startBean.example}">
+                <f:selectItems value="#{startBean.examples}"/>
+            </h:selectOneListbox>
             <p:commandButton id="download" action="#{startBean.download}" value="Download"/>
         </h:form>
     </h:body>
