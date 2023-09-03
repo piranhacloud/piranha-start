@@ -37,8 +37,6 @@ import jakarta.inject.Named;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
-import org.primefaces.model.DefaultTreeNode;
-import org.primefaces.model.TreeNode;
 
 /**
  * The bean for the /start.xhtml page.
@@ -48,11 +46,16 @@ import org.primefaces.model.TreeNode;
 @Named(value = "startBean")
 @RequestScoped
 public class StartBean implements Serializable {
+    
+    /**
+     * Stores the selected example.
+     */
+    private String example;
 
     /**
-     * Stores the tree node.
+     * Stores the examples.
      */
-    private TreeNode<Example> examples;
+    private SelectItem[] examples;
 
     /**
      * Stores the external context.
@@ -98,13 +101,22 @@ public class StartBean implements Serializable {
         }
         facesContext.responseComplete();
     }
+    
+    /**
+     * Get the example.
+     * 
+     * @return the example.
+     */
+    public String getExample() {
+        return example;
+    }
 
     /**
      * Get the examples.
      *
      * @return the examples.
      */
-    public TreeNode getExamples() {
+    public SelectItem[] getExamples() {
         return examples;
     }
 
@@ -159,9 +171,9 @@ public class StartBean implements Serializable {
      */
     @PostConstruct
     public void initialize() {
-        examples = new DefaultTreeNode(new Example("Root Node", false));
-        TreeNode servletExamples = new DefaultTreeNode(new Example("Servlet examples", false), examples);
-        servletExamples.getChildren().add(new DefaultTreeNode(new Example("Hello World HTML example", true)));
+        examples = new SelectItem[2];
+        examples[0] = new SelectItem(null, "Select an example", "Select an example", false, false, true);
+        examples[1] = new SelectItem("webprofile-helloworld", "Hello World application");
     }
 
     /**
@@ -172,13 +184,22 @@ public class StartBean implements Serializable {
     public String getRuntime() {
         return runtime;
     }
+    
+    /**
+     * Set the example.
+     * 
+     * @param example the example.
+     */
+    public void setExample(String example) {
+        this.example = example;
+    }
 
     /**
      * Set the examples.
      *
      * @param examples the examples.
      */
-    public void setExamples(TreeNode examples) {
+    public void setExamples(SelectItem[] examples) {
         this.examples = examples;
     }
 
