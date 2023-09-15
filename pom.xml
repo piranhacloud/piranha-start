@@ -20,7 +20,6 @@
         <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
         <piranha.distribution>webprofile</piranha.distribution>
         <piranha.version>23.8.0</piranha.version>
-        <primefaces.version>12.0.0</primefaces.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <build>
@@ -100,12 +99,6 @@
             <artifactId>jakarta.jakartaee-web-api</artifactId>
             <version>${jakartaee.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>${primefaces.version}</version>
-            <classifier>jakarta</classifier>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
