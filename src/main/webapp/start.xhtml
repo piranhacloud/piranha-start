@@ -24,12 +24,6 @@
             <h:outputLabel value="Stack"/>: <h:selectOneRadio id="stack" value="#{startBean.model.stack}">
                 <f:selectItems value="#{startBean.stacks}"/>
             </h:selectOneRadio>
-            <h2>Dependencies</h2>
-            Will be added soon!
-            <h2>Examples</h2>
-            <h:selectOneListbox value="#{startBean.example}">
-                <f:selectItems value="#{startBean.examples}"/>
-            </h:selectOneListbox>
             <h:commandButton id="download" action="#{startBean.download}" value="Download"/>
         </h:form>
     </h:body>
