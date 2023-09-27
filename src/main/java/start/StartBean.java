@@ -128,7 +128,6 @@ public class StartBean implements Serializable {
     public SelectItem[] getJavaVersions() {
         return new SelectItem[]{
             new SelectItem("17", "17"),
-            new SelectItem("20", "20"),
             new SelectItem("21", "21")
         };
     }
