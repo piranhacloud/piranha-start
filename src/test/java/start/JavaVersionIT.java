@@ -83,30 +83,4 @@ public class JavaVersionIT {
             }
         }
     }
-
-    /**
-     * Test the 'Java 20' choice.
-     *
-     * @throws Exception when an error occurs.
-     */
-    @Test
-    public void testJava20() throws Exception {
-        List<BrowserType> browserTypes = Arrays.asList(
-                playwright.chromium(),
-                playwright.firefox(),
-                playwright.webkit()
-        );
-        for (BrowserType browserType : browserTypes) {
-            try (Browser browser = browserType.launch()) {
-                BrowserContext context = browser.newContext();
-                Page page = context.newPage();
-                page.navigate("http://localhost:8080/piranha-start/start.xhtml");
-                page.getByText("20").click();
-                page.onDownload((download) -> {
-                    assertEquals("project.zip", download.suggestedFilename());
-                });
-                page.getByText("Download").click();
-            }
-        }
-    }
 }
