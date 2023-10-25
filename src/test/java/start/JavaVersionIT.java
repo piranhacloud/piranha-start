@@ -59,12 +59,12 @@ public class JavaVersionIT {
     }
 
     /**
-     * Test the 'Java 17' choice.
+     * Test the 'Java 21' choice.
      *
      * @throws Exception when an error occurs.
      */
     @Test
-    public void testJava17() throws Exception {
+    public void testJava21() throws Exception {
         List<BrowserType> browserTypes = Arrays.asList(
                 playwright.chromium(),
                 playwright.firefox(),
@@ -75,7 +75,7 @@ public class JavaVersionIT {
                 BrowserContext context = browser.newContext();
                 Page page = context.newPage();
                 page.navigate("http://localhost:8080/piranha-start/start.xhtml");
-                page.getByText("17").click();
+                page.getByText("21").click();
                 page.onDownload((download) -> {
                     assertEquals("project.zip", download.suggestedFilename());
                 });

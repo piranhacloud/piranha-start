@@ -46,7 +46,7 @@ public class StartModel {
     /**
      * Stores the Java version.
      */
-    private Integer javaVersion = 17;
+    private Integer javaVersion = 21;
     
     /**
      * Stores the packaging.
