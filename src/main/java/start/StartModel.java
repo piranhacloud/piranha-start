@@ -46,7 +46,7 @@ public class StartModel {
     /**
      * Stores the Java version.
      */
-    private Integer javaVersion = 21;
+    private String javaVersion = "21";
     
     /**
      * Stores the packaging.
@@ -72,7 +72,7 @@ public class StartModel {
      *
      * @return the java version.
      */
-    public Integer getJavaVersion() {
+    public String getJavaVersion() {
         return javaVersion;
     }
     
@@ -108,7 +108,7 @@ public class StartModel {
      *
      * @param javaVersion the java version.
      */
-    public void setJavaVersion(Integer javaVersion) {
+    public void setJavaVersion(String javaVersion) {
         this.javaVersion = javaVersion;
     }
     
