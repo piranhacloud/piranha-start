@@ -44,5 +44,5 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build and push image
       run: |
-        docker build -f Dockerfile -t ghcr.io/piranhacloud/start:latest .
+        docker build -f src/main/docker/Dockerfile -t ghcr.io/piranhacloud/start:latest .
         docker push ghcr.io/piranhacloud/start:latest
