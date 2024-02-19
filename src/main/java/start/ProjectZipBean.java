@@ -38,15 +38,15 @@ import java.util.zip.ZipOutputStream;
 
 /**
  * The bean for writing out the project.zip file.
- * 
+ *
  * @author Manfred Riem (mriem@manorrock.com)
  */
 @ApplicationScoped
 public class ProjectZipBean {
-    
+
     /**
      * Collect the appropriate build plugins for a pom.xml file.
-     * 
+     *
      * @param model the model.
      * @return the build plugin snippet.
      */
@@ -76,16 +76,16 @@ public class ProjectZipBean {
         }
         return builder.toString();
     }
-    
+
     /**
      * Collect the appropriate dependencies for a pom.xml file.
-     * 
+     *
      * @param model the model.
      * @return the build plugin snippet.
      */
     private String getDependenciesForPomXml(StartModel model) {
         StringBuilder builder = new StringBuilder();
-        if (model.getStack().equals("webprofile")) {
+        if (model.getStack().equals("coreprofile")) {
             builder.append("""
                 <dependency>
                     <groupId>jakarta.platform</groupId>
@@ -95,12 +95,32 @@ public class ProjectZipBean {
                 </dependency>
                 """);
         }
+        if (model.getStack().equals("servlet")) {
+            builder.append("""
+                <dependency>
+                    <groupId>jakarta.servlet</groupId>
+                    <artifactId>jakarta.servlet-api</artifactId>
+                    <version>6.0.0</version>
+                    <scope>provided</scope>
+                </dependency>
+                """);
+        }
+        if (model.getStack().equals("webprofile")) {
+            builder.append("""
+                <dependency>
+                    <groupId>jakarta.platform</groupId>
+                    <artifactId>jakarta.jakartaee-core-api</artifactId>
+                    <version>10.0.0</version>
+                    <scope>provided</scope>
+                </dependency>
+                """);
+        }
         return builder.toString();
     }
-           
+
     /**
      * Write the project.zip file.
-     * 
+     *
      * @param model the model.
      * @param outputStream the output stream to write to.
      * @throws IOException when an I/O error occurs.
@@ -121,10 +141,10 @@ public class ProjectZipBean {
         writeStartJson(model, zipOutputStream);
         zipOutputStream.finish();
     }
-    
+
     /**
      * Write pom.xml file.
-     * 
+     *
      * @param model the model.
      * @param zipOutputStream the zip output stream.
      * @throws IOException when an I/O error occurs.
@@ -132,8 +152,8 @@ public class ProjectZipBean {
     public void writePomXml(StartModel model, ZipOutputStream zipOutputStream) throws IOException {
         ZipEntry zipEntry = new ZipEntry("pom.xml");
         zipOutputStream.putNextEntry(zipEntry);
-        String pomFile = 
-                """
+        String pomFile
+                = """
                 <?xml version="1.0" encoding="UTF-8"?>
                 
                 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -169,7 +189,7 @@ public class ProjectZipBean {
 
     /**
      * Write start.json file.
-     * 
+     *
      * @param model the model.
      * @param zipOutputStream the zip output stream.
      * @throws IOException when an I/O error occurs.
