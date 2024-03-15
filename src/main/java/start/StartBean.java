@@ -160,6 +160,7 @@ public class StartBean implements Serializable {
      */
     public SelectItem[] getStacks() {
         return new SelectItem[]{
+            new SelectItem("embedded", "Piranha Embedded"),
             new SelectItem("servlet", "Jakarta Servlet 6"),
             new SelectItem("coreprofile", "Jakarta Core Profile 10"),
             new SelectItem("webprofile", "Jakarta Web Profile 10"),};
