@@ -85,6 +85,16 @@ public class ProjectZipBean {
      */
     private String getDependenciesForPomXml(StartModel model) {
         StringBuilder builder = new StringBuilder();
+        if (model.getStack().equals("embedded")) {
+            builder.append("""
+                <dependency>
+                    <groupId>cloud.piranha</groupId>
+                    <artifactId>piranha-embedded</artifactId>
+                    <version>24.2.0</version>
+                    <scope>compile</scope>
+                </dependency>
+                """);
+        }
         if (model.getStack().equals("coreprofile")) {
             builder.append("""
                 <dependency>
@@ -109,7 +119,7 @@ public class ProjectZipBean {
             builder.append("""
                 <dependency>
                     <groupId>jakarta.platform</groupId>
-                    <artifactId>jakarta.jakartaee-core-api</artifactId>
+                    <artifactId>jakarta.jakartaee-web-api</artifactId>
                     <version>10.0.0</version>
                     <scope>provided</scope>
                 </dependency>
