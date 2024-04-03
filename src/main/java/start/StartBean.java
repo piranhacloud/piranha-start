@@ -29,8 +29,11 @@ package start;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.component.UIInput;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.AjaxBehaviorEvent;
 import jakarta.faces.model.SelectItem;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -46,7 +49,7 @@ import java.io.Serializable;
 @Named(value = "startBean")
 @RequestScoped
 public class StartBean implements Serializable {
-    
+
     /**
      * Stores the selected example.
      */
@@ -101,10 +104,24 @@ public class StartBean implements Serializable {
         }
         facesContext.responseComplete();
     }
-    
+
+    /**
+     * Handle changing stack.
+     *
+     * @param event the event.
+     */
+    public void changeStack(AjaxBehaviorEvent event) throws AbortProcessingException {
+        String value = event.getFacesContext().getExternalContext()
+                .getRequestParameterMap().get("form:stack");
+
+        if (value != null && value.equals("embedded")) {
+            model.setPackaging("jar");
+        }
+    }
+
     /**
      * Get the example.
-     * 
+     *
      * @return the example.
      */
     public String getExample() {
@@ -184,10 +201,10 @@ public class StartBean implements Serializable {
     public String getRuntime() {
         return runtime;
     }
-    
+
     /**
      * Set the example.
-     * 
+     *
      * @param example the example.
      */
     public void setExample(String example) {
