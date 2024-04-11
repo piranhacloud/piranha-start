@@ -1,7 +1,7 @@
 #
 # Build the WAR file
 #
-FROM eclipse-temurin:22 AS builder
+FROM eclipse-temurin:21 AS builder
 ENV MAVEN_VERSION 3.8.6
 RUN cd /usr/local && \
     curl -O https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz && \
@@ -14,7 +14,7 @@ RUN export PATH=$PATH:/usr/local/apache-maven-$MAVEN_VERSION/bin && \
 #
 # Download the Piranha Web Profile distribution
 #
-FROM eclipse-temurin:22 AS dist
+FROM eclipse-temurin:21 AS dist
 ENV PIRANHA_VERSION 24.3.0
 WORKDIR /root
 RUN curl -O https://repo1.maven.org/maven2/cloud/piranha/dist/piranha-dist-webprofile/$PIRANHA_VERSION/piranha-dist-webprofile-$PIRANHA_VERSION.jar && \
@@ -23,7 +23,7 @@ RUN curl -O https://repo1.maven.org/maven2/cloud/piranha/dist/piranha-dist-webpr
 #
 # Run the application
 #
-FROM eclipse-temurin2221
+FROM eclipse-temurin:21
 RUN useradd -m piranha
 EXPOSE 8080
 COPY --from=builder /root/target/piranha-start.war /home/piranha/ROOT.war
