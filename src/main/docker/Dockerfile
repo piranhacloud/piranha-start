@@ -12,23 +12,13 @@ RUN export PATH=$PATH:/usr/local/apache-maven-$MAVEN_VERSION/bin && \
     mvn --no-transfer-progress -DskipTests -DskipITs clean install
 
 #
-# Download the Piranha Web Profile distribution
-#
-FROM eclipse-temurin:21 AS dist
-ENV PIRANHA_VERSION 24.3.0
-WORKDIR /root
-RUN curl -O https://repo1.maven.org/maven2/cloud/piranha/dist/piranha-dist-webprofile/$PIRANHA_VERSION/piranha-dist-webprofile-$PIRANHA_VERSION.jar && \
-    mv piranha-dist-webprofile-$PIRANHA_VERSION.jar piranha-dist-webprofile.jar
-
-#
 # Run the application
 #
-FROM eclipse-temurin:21
-RUN useradd -m piranha
+FROM ghcr.io/piranhacloud/webprofile:24.3.0
 EXPOSE 8080
 COPY --from=builder /root/target/piranha-start.war /home/piranha/ROOT.war
-COPY --from=dist /root/piranha-dist-webprofile.jar  /home/piranha/piranha-dist-webprofile.jar
 WORKDIR /home/piranha
+USER root
 RUN chown -R piranha:piranha *
 USER piranha
 CMD ["java", "-jar", "piranha-dist-webprofile.jar", "--war-file", "ROOT.war"]
