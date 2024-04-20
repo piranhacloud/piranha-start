@@ -14,7 +14,7 @@ RUN export PATH=$PATH:/usr/local/apache-maven-$MAVEN_VERSION/bin && \
 #
 # Run the application
 #
-FROM ghcr.io/piranhacloud/webprofile:24.3.0
+FROM ghcr.io/piranhacloud/webprofile:24.4.0
 EXPOSE 8080
 COPY --from=builder /root/target/piranha-start.war /home/piranha/ROOT.war
 WORKDIR /home/piranha
