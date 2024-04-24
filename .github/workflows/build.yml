@@ -21,8 +21,7 @@ jobs:
         java-version: 21
     - name: Build WAR
       run: |
-        npx playwright install --with-deps
-        mvn --no-transfer-progress -B install
+        mvn -B -DskipITs=true -DskipTests=true --ntp install
     - name: Login to GHCR
       uses: docker/login-action@v2
       with:
