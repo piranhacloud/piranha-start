@@ -51,7 +51,7 @@ public class StartModel {
     /**
      * Stores the packaging.
      */
-    private String packaging;
+    private String packaging = "war";
     
     /**
      * Stores the stack.
