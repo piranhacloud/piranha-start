@@ -72,11 +72,6 @@ public class StartBean implements Serializable {
     private FacesContext facesContext;
 
     /**
-     * Stores the runtime.
-     */
-    private String runtime = "servlet";
-
-    /**
      * Stores our model.
      */
     private StartModel model = new StartModel();
@@ -105,16 +100,65 @@ public class StartBean implements Serializable {
     }
 
     /**
-     * Handle changing stack.
+     * Handle changing profile.
      *
      * @param event the event.
      */
-    public void changeStack(AjaxBehaviorEvent event) throws AbortProcessingException {
+    public void changeProfile(AjaxBehaviorEvent event) throws AbortProcessingException {
         String value = event.getFacesContext().getExternalContext()
-                .getRequestParameterMap().get("form:stack");
+                .getRequestParameterMap().get("form:profile");
 
-        if (value != null && value.equals("embedded")) {
-            model.setPackaging("jar");
+        if (value != null) {
+            switch (value) {
+                case "none" -> {
+                    model.setPackaging("jar");
+                    model.setRuntime("embedded");
+                }
+                
+                case "coreprofile" -> {
+                    model.setPackaging("war");
+                    model.setRuntime("coreprofile");
+                }
+
+                case "webprofile" -> {
+                    model.setPackaging("war");
+                    model.setRuntime("webprofile");
+                }
+            }
+        }
+    }
+
+    /**
+     * Handle changing runtime.
+     *
+     * @param event the event.
+     */
+    public void changeRuntime(AjaxBehaviorEvent event) throws AbortProcessingException {
+        String value = event.getFacesContext().getExternalContext()
+                .getRequestParameterMap().get("form:runtime");
+
+        if (value != null) {
+            switch (value) {
+                case "embedded" -> {
+                    model.setPackaging("jar");
+                    model.setProfile("none");
+                }
+
+                case "coreprofile" -> {
+                    model.setPackaging("war");
+                    model.setProfile("coreprofile");
+                }
+                
+                case "server" -> {
+                    model.setPackaging("war");
+                    model.setProfile("none");
+                }
+
+                case "webprofile" -> {
+                    model.setPackaging("war");
+                    model.setProfile("webprofile");
+                }
+            }
         }
     }
 
@@ -174,12 +218,26 @@ public class StartBean implements Serializable {
      *
      * @return the stacks.
      */
-    public SelectItem[] getStacks() {
+    public SelectItem[] getProfiles() {
+        return new SelectItem[]{
+            new SelectItem("none", "None"),
+            new SelectItem("coreprofile", "Jakarta Core Profile 10"),
+            new SelectItem("webprofile", "Jakarta Web Profile 10")
+        };
+    }
+
+    /**
+     * Get the runtimes.
+     *
+     * @return the runtimes.
+     */
+    public SelectItem[] getRuntimes() {
         return new SelectItem[]{
             new SelectItem("embedded", "Piranha Embedded"),
-            new SelectItem("servlet", "Jakarta Servlet 6"),
-            new SelectItem("coreprofile", "Jakarta Core Profile 10"),
-            new SelectItem("webprofile", "Jakarta Web Profile 10"),};
+            new SelectItem("coreprofile", "Piranha Core Profile"),
+            new SelectItem("server", "Piranha Server"),
+            new SelectItem("webprofile", "Piranha Web Profile")
+        };
     }
 
     /**
@@ -190,15 +248,6 @@ public class StartBean implements Serializable {
         examples = new SelectItem[2];
         examples[0] = new SelectItem(null, "Select an example", "Select an example", false, false, true);
         examples[1] = new SelectItem("webprofile-helloworld", "Hello World application");
-    }
-
-    /**
-     * Get the runtime.
-     *
-     * @return the runtime.
-     */
-    public String getRuntime() {
-        return runtime;
     }
 
     /**
@@ -226,14 +275,5 @@ public class StartBean implements Serializable {
      */
     public void setModel(StartModel model) {
         this.model = model;
-    }
-
-    /**
-     * Set the runtime.
-     *
-     * @param runtime the runtime.
-     */
-    public void setRuntime(String runtime) {
-        this.runtime = runtime;
     }
 }

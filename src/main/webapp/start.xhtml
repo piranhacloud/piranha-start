@@ -21,10 +21,15 @@
             <h:outputLabel value="Packaging"/>: <h:selectOneRadio id="packagingRadio" value="#{startBean.model.packaging}">
                 <f:selectItems value="#{startBean.packagings}"/>
             </h:selectOneRadio>
-            <h:outputLabel value="Stack"/>: 
-            <h:selectOneRadio id="stack" value="#{startBean.model.stack}">
-                <f:ajax execute="@form" render="@form" listener="#{startBean.changeStack}"/>
-                <f:selectItems value="#{startBean.stacks}"/>
+            <h:outputLabel value="Jakarta EE Profile"/>: 
+            <h:selectOneRadio id="profile" value="#{startBean.model.profile}">
+                <f:ajax execute="@form" render="@form" listener="#{startBean.changeProfile}"/>
+                <f:selectItems value="#{startBean.profiles}"/>
+            </h:selectOneRadio>
+            <h:outputLabel value="Piranha Runtime"/>: 
+            <h:selectOneRadio id="runtime" value="#{startBean.model.runtime}">
+                <f:ajax execute="@form" render="@form" listener="#{startBean.changeRuntime}"/>
+                <f:selectItems value="#{startBean.runtimes}"/>
             </h:selectOneRadio>
             <h:commandButton id="download" action="#{startBean.download}" value="Download"/>
         </h:form>
