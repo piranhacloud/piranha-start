@@ -85,17 +85,7 @@ public class ProjectZipBean {
      */
     private String getDependenciesForPomXml(StartModel model) {
         StringBuilder builder = new StringBuilder();
-        if (model.getStack().equals("embedded")) {
-            builder.append("""
-                <dependency>
-                    <groupId>cloud.piranha</groupId>
-                    <artifactId>piranha-embedded</artifactId>
-                    <version>24.2.0</version>
-                    <scope>compile</scope>
-                </dependency>
-                """);
-        }
-        if (model.getStack().equals("coreprofile")) {
+        if (model.getProfile().equals("coreprofile")) {
             builder.append("""
                 <dependency>
                     <groupId>jakarta.platform</groupId>
@@ -105,22 +95,32 @@ public class ProjectZipBean {
                 </dependency>
                 """);
         }
-        if (model.getStack().equals("servlet")) {
+        if (model.getProfile().equals("webprofile")) {
+            builder.append("""
+                <dependency>
+                    <groupId>jakarta.platform</groupId>
+                    <artifactId>jakarta.jakartaee-web-api</artifactId>
+                    <version>10.0.0</version>
+                    <scope>provided</scope>
+                </dependency>
+                """);
+        }
+        if (model.getRuntime().equals("embedded")) {
+            builder.append("""
+                <dependency>
+                    <groupId>cloud.piranha</groupId>
+                    <artifactId>piranha-embedded</artifactId>
+                    <version>24.8.0</version>
+                    <scope>compile</scope>
+                </dependency>
+                """);
+        }
+        if (model.getRuntime().equals("servlet")) {
             builder.append("""
                 <dependency>
                     <groupId>jakarta.servlet</groupId>
                     <artifactId>jakarta.servlet-api</artifactId>
                     <version>6.0.0</version>
-                    <scope>provided</scope>
-                </dependency>
-                """);
-        }
-        if (model.getStack().equals("webprofile")) {
-            builder.append("""
-                <dependency>
-                    <groupId>jakarta.platform</groupId>
-                    <artifactId>jakarta.jakartaee-web-api</artifactId>
-                    <version>10.0.0</version>
                     <scope>provided</scope>
                 </dependency>
                 """);

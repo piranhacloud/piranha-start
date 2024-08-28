@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2023 Manorrock.com. All Rights Reserved.
+ * Copyright (c) 2002-2024 Manorrock.com. All Rights Reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -54,9 +54,14 @@ public class StartModel {
     private String packaging = "war";
     
     /**
-     * Stores the stack.
+     * Stores the profile.
      */
-    private String stack = "webprofile";
+    private String profile = "webprofile";
+    
+    /**
+     * Stores the runtime.
+     */
+    private String runtime = "webprofile";
     
     /**
      * Get the choices.
@@ -86,12 +91,21 @@ public class StartModel {
     }
 
     /**
-     * Get the stack.
+     * Get the profile.
      * 
-     * @return the stack.
+     * @return the profile.
      */
-    public String getStack() {
-        return stack;
+    public String getProfile() {
+        return profile;
+    }
+
+    /**
+     * Get the runtime.
+     * 
+     * @return the runtime.
+     */
+    public String getRuntime() {
+        return runtime;
     }
 
     /**
@@ -122,12 +136,21 @@ public class StartModel {
     }
 
     /**
-     * Set the stack.
+     * Set the profile.
      * 
-     * @param stack the stack.
+     * @param profile the profile.
      */
-    public void setStack(String stack) {
-        this.stack = stack;
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
+
+    /**
+     * Set the runtime.
+     * 
+     * @param runtime the runtime.
+     */
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
     }
     
     /**
