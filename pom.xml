@@ -16,6 +16,7 @@
         <junit.version>5.11.0</junit.version>
         <piranha.version>24.8.0</piranha.version>
         <playwright.version>1.46.0</playwright.version>
+        <primefaces.version>14.0.3</primefaces.version>
         <!-- other -->
         <java.version>21</java.version>
         <piranha.distribution>webprofile</piranha.distribution>
@@ -128,6 +129,13 @@
             <artifactId>playwright</artifactId>
             <version>${playwright.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>${primefaces.version}</version>
+            <scope>compile</scope>
+            <classifier>jakarta</classifier>
         </dependency>
     </dependencies>
     <profiles>
