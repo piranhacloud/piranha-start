@@ -5,33 +5,39 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Piranha Start!</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <h:outputStylesheet name="piranha.css"/>
     </h:head>
     <h:body>
         <f:view transient="true"/>
         <h1>Piranha Start</h1>
         <h:form id="form">
-            <h:outputLabel value="Java version"/>: <h:selectOneRadio id="javaVersionRadio" value="#{startBean.model.javaVersion}">
+            <h:outputLabel value="Java version"/>: 
+            <p:selectOneRadio id="javaVersionRadio" value="#{startBean.model.javaVersion}">
                 <f:selectItems value="#{startBean.javaVersions}"/>
-            </h:selectOneRadio>
-            <h:outputLabel value="Packaging"/>: <h:selectOneRadio id="packagingRadio" value="#{startBean.model.packaging}">
+            </p:selectOneRadio>
+            <br/>
+            <h:outputLabel value="Packaging"/>: 
+            <p:selectOneRadio id="packagingRadio" value="#{startBean.model.packaging}">
                 <f:selectItems value="#{startBean.packagings}"/>
-            </h:selectOneRadio>
+            </p:selectOneRadio>
+            <br/>
             <h:outputLabel value="Jakarta EE Profile"/>: 
-            <h:selectOneRadio id="profile" value="#{startBean.model.profile}">
+            <p:selectOneRadio id="profile" value="#{startBean.model.profile}">
                 <f:ajax execute="@form" render="@form" listener="#{startBean.changeProfile}"/>
                 <f:selectItems value="#{startBean.profiles}"/>
-            </h:selectOneRadio>
+            </p:selectOneRadio>
+            <br/>
             <h:outputLabel value="Piranha Runtime"/>: 
-            <h:selectOneRadio id="runtime" value="#{startBean.model.runtime}">
+            <p:selectOneRadio id="runtime" value="#{startBean.model.runtime}">
                 <f:ajax execute="@form" render="@form" listener="#{startBean.changeRuntime}"/>
                 <f:selectItems value="#{startBean.runtimes}"/>
-            </h:selectOneRadio>
-            <h:commandButton id="download" action="#{startBean.download}" value="Download"/>
+            </p:selectOneRadio>
+            <br/>
+            <p:commandButton id="download" action="#{startBean.download}" value="Download"/>
         </h:form>
         <h2>Prepackaged examples</h2>
         <p>
