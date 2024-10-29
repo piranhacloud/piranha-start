@@ -90,7 +90,7 @@ public class ProjectZipBean {
                 <dependency>
                     <groupId>jakarta.platform</groupId>
                     <artifactId>jakarta.jakartaee-web-api</artifactId>
-                    <version>10.0.0</version>
+                    <version>11.0.0-M4</version>
                     <scope>provided</scope>
                 </dependency>
                 """);
@@ -100,7 +100,7 @@ public class ProjectZipBean {
                 <dependency>
                     <groupId>jakarta.platform</groupId>
                     <artifactId>jakarta.jakartaee-web-api</artifactId>
-                    <version>10.0.0</version>
+                    <version>11.0.0-M4</version>
                     <scope>provided</scope>
                 </dependency>
                 """);
@@ -110,7 +110,7 @@ public class ProjectZipBean {
                 <dependency>
                     <groupId>cloud.piranha</groupId>
                     <artifactId>piranha-embedded</artifactId>
-                    <version>24.8.0</version>
+                    <version>24.10.0</version>
                     <scope>compile</scope>
                 </dependency>
                 """);
@@ -120,7 +120,7 @@ public class ProjectZipBean {
                 <dependency>
                     <groupId>jakarta.servlet</groupId>
                     <artifactId>jakarta.servlet-api</artifactId>
-                    <version>6.0.0</version>
+                    <version>6.1.0</version>
                     <scope>provided</scope>
                 </dependency>
                 """);
