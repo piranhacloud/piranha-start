@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2023 Manorrock.com. All Rights Reserved.
+ * Copyright (c) 2002-2024 Manorrock.com. All Rights Reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -188,7 +188,7 @@ public class StartBean implements Serializable {
     public SelectItem[] getJavaVersions() {
         return new SelectItem[]{
             new SelectItem("21", "21"),
-            new SelectItem("22", "22")
+            new SelectItem("23", "23")
         };
     }
 
