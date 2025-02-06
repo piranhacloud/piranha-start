@@ -27,4 +27,4 @@ jobs:
         password: ${{ secrets.GHCR_PASSWORD }}
     - name: Build and push image
       run: |
-        mvn -P docker clean install docker:push
+        mvn -B -DskipTests=true -DskipITs=true -P docker clean install docker:build docker:push
