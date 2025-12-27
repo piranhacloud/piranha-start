@@ -1,5 +1,7 @@
 # Piranha Start
 
+_This repository is no longer being maintained now that all contributions flow through Eclipse_
+
 See for the running version of Piranha Start at http://start.piranha.cloud/
 
 ## How do I contribute?
